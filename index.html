@@ -195,7 +195,6 @@
 
     <div class="card" id="formCard">
       <form id="calcForm">
-        <!-- Lead capture -->
         <div class="section-title">Quick details so we can personalise your results</div>
         <label for="name">First name</label>
         <input type="text" id="name" name="name" placeholder="Alex" required>
@@ -206,13 +205,11 @@
         <label for="business">What kind of business are you running? (optional)</label>
         <input type="text" id="business" name="business" placeholder="e.g. Consultancy, Agency, Local service">
 
-        <!-- Rate -->
         <div class="section-title">What is one hour of your time actually worth?</div>
         <label for="hourlyRate">Your real hourly rate or average project value (£)</label>
         <div class="hint">No humble numbers. Put the figure that reflects what you actually charge (or should be charging).</div>
         <input type="number" id="hourlyRate" name="hourlyRate" min="1" step="1" placeholder="85" required>
 
-        <!-- Hours currently spent -->
         <div class="section-title">Where is your time actually going right now?</div>
         <div class="hint">Be ruthlessly honest. These are the hours most owners quietly bleed every week.</div>
 
@@ -247,7 +244,6 @@
       </form>
     </div>
 
-    <!-- Results -->
     <div id="results">
       <div class="card">
         <div class="result-box">
@@ -282,15 +278,8 @@
   </div>
 
   <script>
-    // ============================================
-    // CONFIGURE THESE TWO LINES
-    // ============================================
-    // 1. Formspree (or Getform / Basin) endpoint for lead capture
     const FORM_ENDPOINT = "https://formspree.io/f/mjybzjyl";
-
-    // 2. Sales page
-    const PACK_SALES_URL = "https://attenger.github.io/ai-revenue-calculator/sales.html";
-    // ============================================
+    const PACK_SALES_URL = "https://attenger.github.io/ai-plug-and-play/";
 
     document.getElementById("ctaLink").href = PACK_SALES_URL;
 
@@ -303,7 +292,6 @@
       calcBtn.disabled = true;
       calcBtn.textContent = "Crunching your numbers...";
 
-      // Gather values
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const business = document.getElementById("business").value.trim();
@@ -316,7 +304,6 @@
 
       const totalHours = hoursLeads + hoursFollowup + hoursContent + hoursAdmin;
 
-      // Conservative realistic savings percentages based on the systems
       const savedLeads = hoursLeads * 0.65;
       const savedFollowup = hoursFollowup * 0.70;
       const savedContent = hoursContent * 0.55;
@@ -328,7 +315,6 @@
       const moneyMonth = Math.round(moneyWeek * 4.3);
       const extraCapacity = Math.round(hoursSavedWeek * 10) / 10;
 
-      // Display results
       document.getElementById("hoursSaved").textContent = hoursSavedWeek;
       document.getElementById("hoursMonth").textContent = hoursSavedMonth;
       document.getElementById("moneySaved").textContent = moneyWeek.toLocaleString();
@@ -338,23 +324,10 @@
       results.style.display = "block";
       results.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Send data to Formspree
       const payload = {
-        name,
-        email,
-        business,
-        hourlyRate,
-        hoursLeads,
-        hoursFollowup,
-        hoursContent,
-        hoursAdmin,
-        totalHours,
-        hoursSavedWeek,
-        moneyWeek,
-        moneyMonth,
-        marketingOptIn,
-        source: "AI Time & Money Calculator",
-        submittedAt: new Date().toISOString()
+        name, email, business, hourlyRate, hoursLeads, hoursFollowup, hoursContent, hoursAdmin,
+        totalHours, hoursSavedWeek, moneyWeek, moneyMonth, marketingOptIn,
+        source: "AI Time & Money Calculator", submittedAt: new Date().toISOString()
       };
 
       try {
