@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How much extra revenue could AI unlock for your business? | AI for Small Businesses</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 18px;
+      transition: border-color 0.2s;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 8px 0 16px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+    }
+    button {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: var(--accent-hover); }
+    button:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+    #results {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result-box {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .result-box h3 {
+      font-size: 0.9rem;
+      color: #065f46;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .result-box .big {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #047857;
+    }
+    .result-box .sub {
+      font-size: 0.9rem;
+      color: #047857;
+      margin-top: 4px;
+    }
+    .cta-box {
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .cta-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .cta-box p {
+      opacity: 0.9;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .cta-box a {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s;
+    }
+    .cta-box a:hover { transform: scale(1.03); }
+    footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .privacy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>How much extra revenue could AI unlock for your business?</h1>
+      <p>Be honest for 60 seconds. See the hours you could free up — and the extra revenue that capacity could create.</p>
+    </header>
+
+    <div class="card" id="formCard">
+      <form id="calcForm">
+        <!-- Lead capture -->
+        <div class="section-title">Quick details so we can personalise your results</div>
+        <label for="name">First name</label>
+        <input type="text" id="name" name="name" placeholder="Alex" required>
+
+        <label for="email">Best email</label>
+        <input type="email" id="email" name="email" placeholder="alex@yourbusiness.com" required>
+
+        <label for="business">What kind of business are you running? (optional)</label>
+        <input type="text" id="business" name="business" placeholder="e.g. Consultancy, Agency, Local service">
+
+        <!-- Rate -->
+        <div class="section-title">What is one hour of your time actually worth?</div>
+        <label for="hourlyRate">Your real hourly rate or average project value (£)</label>
+        <div class="hint">No humble numbers. Put the figure that reflects what you actually charge (or should be charging).</div>
+        <input type="number" id="hourlyRate" name="hourlyRate" min="1" step="1" placeholder="85" required>
+
+        <!-- Hours currently spent -->
+        <div class="section-title">Where is your time actually going right now?</div>
+        <div class="hint">Be ruthlessly honest. These are the hours most owners quietly bleed every week.</div>
+
+        <div class="grid-2">
+          <div>
+            <label for="hoursLeads">Chasing & qualifying leads</label>
+            <input type="number" id="hoursLeads" name="hoursLeads" min="0" step="0.5" value="4" required>
+          </div>
+          <div>
+            <label for="hoursFollowup">Follow-ups & post-lead admin</label>
+            <input type="number" id="hoursFollowup" name="hoursFollowup" min="0" step="0.5" value="3" required>
+          </div>
+          <div>
+            <label for="hoursContent">Creating content, social & emails</label>
+            <input type="number" id="hoursContent" name="hoursContent" min="0" step="0.5" value="5" required>
+          </div>
+          <div>
+            <label for="hoursAdmin">Other admin & manual tasks</label>
+            <input type="number" id="hoursAdmin" name="hoursAdmin" min="0" step="0.5" value="4" required>
+          </div>
+        </div>
+
+        <div style="margin: 18px 0 8px; display: flex; align-items: flex-start; gap: 10px;">
+          <input type="checkbox" id="marketingOptIn" name="marketingOptIn" value="yes" style="margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0;">
+          <label for="marketingOptIn" style="font-weight: 400; font-size: 0.9rem; line-height: 1.4; margin-bottom: 0; color: var(--text);">
+            Yes, I’d like to receive emails about plug-and-play AI workflows and systems that free up time and grow revenue. I can unsubscribe at any time.
+          </label>
+        </div>
+
+        <button type="submit" id="calcBtn">Show me what I’m leaving on the table →</button>
+        <p class="privacy">We’ll use your details to show your results and (if you opt in) send useful updates. You can unsubscribe anytime.</p>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div id="results">
+      <div class="card">
+        <div class="result-box">
+          <h3>Hours you could free up every week</h3>
+          <div class="big" id="hoursSaved">0</div>
+          <div class="sub">≈ <span id="hoursMonth">0</span> hours a month of capacity back in your diary</div>
+        </div>
+
+        <div class="result-box">
+          <h3>What that extra capacity is worth</h3>
+          <div class="big">£<span id="moneySaved">0</span></div>
+          <div class="sub">every week · £<span id="moneyMonth">0</span> every month</div>
+        </div>
+
+        <div class="result-box" style="background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); border-color: #bfdbfe;">
+          <h3 style="color:#1e40af;">Extra client work this could fund</h3>
+          <div class="big" style="color:#1d4ed8;" id="extraCapacity">0</div>
+          <div class="sub" style="color:#1e40af;">more hours you could sell or spend on growth</div>
+        </div>
+
+        <div class="cta-box">
+          <h3>This is the upside most owners never install</h3>
+          <p>I’ve spent 10 years working with leaders of 7–9 figure businesses, helping them generate millions more in revenue. These are the plug-and-play AI workflows built from that experience. You don’t need another course. You need the ready-to-run systems that actually free the time.</p>
+          <a href="#" id="ctaLink" target="_blank">Yes — show me the systems →</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      AI for Small Businesses · For owners who are done guessing
+    </footer>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURE THESE TWO LINES
+    // ============================================
+    // 1. Formspree (or Getform / Basin) endpoint for lead capture
+    //    Create a free form at formspree.io → paste the endpoint here
+    const FORM_ENDPOINT = "https://formspree.io/f/mjybzjyl";
+
+    // 2. Where the "Get the Pack" button should go
+    //    (your Gumroad / Lemon / Notion sales page)
+    //    ← Replace this with your real sales page link when ready
+    const PACK_SALES_URL = "https://your-sales-page-link-here.com";
+    // ============================================
+
+    document.getElementById("ctaLink").href = PACK_SALES_URL;
+
+    const form = document.getElementById("calcForm");
+    const results = document.getElementById("results");
+    const calcBtn = document.getElementById("calcBtn");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      calcBtn.disabled = true;
+      calcBtn.textContent = "Crunching your numbers...";
+
+      // Gather values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const hourlyRate = parseFloat(document.getElementById("hourlyRate").value) || 0;
+      const hoursLeads = parseFloat(document.getElementById("hoursLeads").value) || 0;
+      const hoursFollowup = parseFloat(document.getElementById("hoursFollowup").value) || 0;
+      const hoursContent = parseFloat(document.getElementById("hoursContent").value) || 0;
+      const hoursAdmin = parseFloat(document.getElementById("hoursAdmin").value) || 0;
+      const marketingOptIn = document.getElementById("marketingOptIn").checked ? "Yes" : "No";
+
+      const totalHours = hoursLeads + hoursFollowup + hoursContent + hoursAdmin;
+
+      // Conservative realistic savings percentages based on the systems
+      // (Lead qualification + follow-up automation, content engine, admin reduction)
+      const savedLeads = hoursLeads * 0.65;
+      const savedFollowup = hoursFollowup * 0.70;
+      const savedContent = hoursContent * 0.55;
+      const savedAdmin = hoursAdmin * 0.40;
+
+      const hoursSavedWeek = Math.round((savedLeads + savedFollowup + savedContent + savedAdmin) * 10) / 10;
+      const hoursSavedMonth = Math.round(hoursSavedWeek * 4.3 * 10) / 10;
+      const moneyWeek = Math.round(hoursSavedWeek * hourlyRate);
+      const moneyMonth = Math.round(moneyWeek * 4.3);
+      const extraCapacity = Math.round(hoursSavedWeek * 10) / 10; // same hours become capacity
+
+      // Display results
+      document.getElementById("hoursSaved").textContent = hoursSavedWeek;
+      document.getElementById("hoursMonth").textContent = hoursSavedMonth;
+      document.getElementById("moneySaved").textContent = moneyWeek.toLocaleString();
+      document.getElementById("moneyMonth").textContent = moneyMonth.toLocaleString();
+      document.getElementById("extraCapacity").textContent = extraCapacity;
+
+      results.style.display = "block";
+      results.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Send data to Formspree / your endpoint so it lands in email + CRM
+      const payload = {
+        name,
+        email,
+        business,
+        hourlyRate,
+        hoursLeads,
+        hoursFollowup,
+        hoursContent,
+        hoursAdmin,
+        totalHours,
+        hoursSavedWeek,
+        moneyWeek,
+        moneyMonth,
+        marketingOptIn,
+        source: "AI Time & Money Calculator",
+        submittedAt: new Date().toISOString()
+      };
+
+      try {
+        if (FORM_ENDPOINT && !FORM_ENDPOINT.includes("YOUR_FORM_ID")) {
+          await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.log("Lead capture endpoint not configured or failed silently", err);
+      }
+
+      calcBtn.disabled = false;
+      calcBtn.textContent = "Show me what I’m leaving on the table →";
+    });
+  </script>
+</body>
+</html>
