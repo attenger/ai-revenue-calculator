@@ -286,13 +286,10 @@
     // CONFIGURE THESE TWO LINES
     // ============================================
     // 1. Formspree (or Getform / Basin) endpoint for lead capture
-    //    Create a free form at formspree.io → paste the endpoint here
     const FORM_ENDPOINT = "https://formspree.io/f/mjybzjyl";
 
-    // 2. Where the "Get the Pack" button should go
-    //    (your Gumroad / Lemon / Notion sales page)
-    //    ← Replace this with your real sales page link when ready
-    const PACK_SALES_URL = "https://your-sales-page-link-here.com";
+    // 2. Sales page
+    const PACK_SALES_URL = "https://attenger.github.io/ai-revenue-calculator/sales.html";
     // ============================================
 
     document.getElementById("ctaLink").href = PACK_SALES_URL;
@@ -320,7 +317,6 @@
       const totalHours = hoursLeads + hoursFollowup + hoursContent + hoursAdmin;
 
       // Conservative realistic savings percentages based on the systems
-      // (Lead qualification + follow-up automation, content engine, admin reduction)
       const savedLeads = hoursLeads * 0.65;
       const savedFollowup = hoursFollowup * 0.70;
       const savedContent = hoursContent * 0.55;
@@ -330,7 +326,7 @@
       const hoursSavedMonth = Math.round(hoursSavedWeek * 4.3 * 10) / 10;
       const moneyWeek = Math.round(hoursSavedWeek * hourlyRate);
       const moneyMonth = Math.round(moneyWeek * 4.3);
-      const extraCapacity = Math.round(hoursSavedWeek * 10) / 10; // same hours become capacity
+      const extraCapacity = Math.round(hoursSavedWeek * 10) / 10;
 
       // Display results
       document.getElementById("hoursSaved").textContent = hoursSavedWeek;
@@ -342,7 +338,7 @@
       results.style.display = "block";
       results.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Send data to Formspree / your endpoint so it lands in email + CRM
+      // Send data to Formspree
       const payload = {
         name,
         email,
