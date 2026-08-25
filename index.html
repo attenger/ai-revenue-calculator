@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +111,7 @@
       background: #94a3b8;
       cursor: not-allowed;
     }
-    #results, #leadCard {
+    #results {
       display: none;
       animation: fadeIn 0.4s ease;
     }
@@ -177,53 +177,12 @@
       margin-top: 32px;
       font-size: 0.8rem;
       color: var(--muted);
-      line-height: 1.6;
     }
-    footer a { color: var(--accent); }
-    .privacy, .art13 {
+    .privacy {
       font-size: 0.75rem;
       color: var(--muted);
       margin-top: 12px;
       text-align: center;
-    }
-    .art13 a, .privacy a { color: var(--accent); }
-    .opt-in {
-      margin: 18px 0 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .opt-in input {
-      margin-top: 4px;
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-    .opt-in label {
-      font-weight: 400;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      margin-bottom: 0;
-      color: var(--text);
-    }
-    .error-box {
-      display: none;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      color: #991b1b;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 0.9rem;
-      margin-bottom: 14px;
-    }
-    .success-box {
-      display: none;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      color: #065f46;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -236,6 +195,17 @@
 
     <div class="card" id="formCard">
       <form id="calcForm">
+        <div class="section-title">Quick details so we can personalise your results</div>
+        <label for="name">First name</label>
+        <input type="text" id="name" name="name" placeholder="Alex" required>
+
+        <label for="email">Best email</label>
+        <div class="hint">We need this so we can send and save your numbers. You will not see results without it.</div>
+        <input type="email" id="email" name="email" placeholder="alex@yourbusiness.com" required>
+
+        <label for="business">What kind of business are you running? (optional)</label>
+        <input type="text" id="business" name="business" placeholder="e.g. Consultancy, Agency, Local service">
+
         <div class="section-title">What is one hour of your time actually worth?</div>
         <label for="hourlyRate">Your real hourly rate or average project value (£)</label>
         <div class="hint">No humble numbers. Put the figure that reflects what you actually charge (or should be charging).</div>
@@ -263,8 +233,16 @@
           </div>
         </div>
 
+        <div style="margin: 18px 0 8px; display: flex; align-items: flex-start; gap: 10px;">
+          <input type="checkbox" id="marketingOptIn" name="marketingOptIn" value="yes" style="margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0;">
+          <label for="marketingOptIn" style="font-weight: 400; font-size: 0.9rem; line-height: 1.4; margin-bottom: 0; color: var(--text);">
+            Yes, I’d like emails from Attenger Ltd (Emma Fell, Attenger Digital) about plug-and-play AI workflows. Separate from getting your numbers. I can unsubscribe at any time.
+          </label>
+        </div>
+
         <button type="submit" id="calcBtn">Show me what I’m leaving on the table →</button>
-        <p class="art13">You do not need a name or email to see these figures. Results use hourly rate and hours only. Attenger Ltd collects personal data only if you later choose to send your numbers or join the list. <a href="privacy.html">Privacy notice</a>.</p>
+        <p class="privacy">We use your email to send and save your calculator numbers. Marketing emails only if you tick the box above. <a href="privacy.html">Privacy notice</a>.</p>
+        <p class="privacy" id="leadError" style="display:none;color:#b91c1c;"></p>
       </form>
     </div>
 
@@ -296,39 +274,8 @@
       </div>
     </div>
 
-    <div class="card" id="leadCard">
-      <form id="leadForm">
-        <div class="section-title">Want these numbers emailed, or emails about the workflows?</div>
-        <p class="hint" style="margin-bottom:16px;">Optional. You already have your results above. Emails are sent by Attenger Ltd (Emma Fell at Attenger Digital).</p>
-
-        <div id="leadError" class="error-box" role="alert"></div>
-        <div id="leadSuccess" class="success-box" role="status"></div>
-
-        <div id="leadFields">
-          <label for="name">First name (optional)</label>
-          <input type="text" id="name" name="name" placeholder="Alex" autocomplete="given-name">
-
-          <label for="email">Email — so we can send the numbers if you want them</label>
-          <input type="email" id="email" name="email" placeholder="alex@yourbusiness.com" required autocomplete="email">
-
-          <label for="business">What kind of business are you running? (optional)</label>
-          <input type="text" id="business" name="business" placeholder="e.g. Consultancy, Agency, Local service">
-
-          <div class="opt-in">
-            <input type="checkbox" id="marketingOptIn" name="marketingOptIn" value="yes">
-            <label for="marketingOptIn">
-              Yes, I’d like to receive emails from Attenger Ltd (Emma Fell at Attenger Digital) about plug-and-play AI workflows and systems that free up time and grow revenue. I can unsubscribe at any time.
-            </label>
-          </div>
-
-          <button type="submit" id="leadBtn">Email my numbers / join the list →</button>
-          <p class="privacy">We only send this if you submit this form. Marketing emails only if you tick the box (it stays unticked unless you choose). <a href="privacy.html">Privacy notice</a>.</p>
-        </div>
-      </form>
-    </div>
-
     <footer>
-      Attenger Ltd (11036567) · Registered office: Carleton House, 266-268 Stratford Road, Shirley, Solihull, West Midlands, B90 3AD, United Kingdom<br>
+      Attenger Ltd (11036567) · Ethical AI for Small Businesses · For owners who are done guessing<br>
       <a href="privacy.html">Privacy notice</a>
       ·
       <a href="mailto:efell@attenger.com">efell@attenger.com</a>
@@ -344,23 +291,21 @@
     const form = document.getElementById("calcForm");
     const results = document.getElementById("results");
     const calcBtn = document.getElementById("calcBtn");
-    const leadCard = document.getElementById("leadCard");
-    const leadForm = document.getElementById("leadForm");
-    const leadBtn = document.getElementById("leadBtn");
-    const leadError = document.getElementById("leadError");
-    const leadSuccess = document.getElementById("leadSuccess");
-    const leadFields = document.getElementById("leadFields");
 
-    let lastCalc = null;
-
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
+      calcBtn.disabled = true;
+      calcBtn.textContent = "Crunching your numbers...";
 
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const business = document.getElementById("business").value.trim();
       const hourlyRate = parseFloat(document.getElementById("hourlyRate").value) || 0;
       const hoursLeads = parseFloat(document.getElementById("hoursLeads").value) || 0;
       const hoursFollowup = parseFloat(document.getElementById("hoursFollowup").value) || 0;
       const hoursContent = parseFloat(document.getElementById("hoursContent").value) || 0;
       const hoursAdmin = parseFloat(document.getElementById("hoursAdmin").value) || 0;
+      const marketingOptIn = document.getElementById("marketingOptIn").checked ? "Yes" : "No";
 
       const totalHours = hoursLeads + hoursFollowup + hoursContent + hoursAdmin;
 
@@ -381,82 +326,34 @@
       document.getElementById("moneyMonth").textContent = moneyMonth.toLocaleString();
       document.getElementById("extraCapacity").textContent = extraCapacity;
 
-      lastCalc = {
-        hourlyRate, hoursLeads, hoursFollowup, hoursContent, hoursAdmin,
-        totalHours, hoursSavedWeek, hoursSavedMonth, moneyWeek, moneyMonth, extraCapacity
-      };
-
       results.style.display = "block";
-      leadCard.style.display = "block";
       results.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    function showLeadError(message) {
-      leadSuccess.style.display = "none";
-      leadError.style.display = "block";
-      leadError.textContent = message;
-    }
-
-    leadForm.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      leadError.style.display = "none";
-      leadError.textContent = "";
-      leadSuccess.style.display = "none";
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const business = document.getElementById("business").value.trim();
-      const marketingOptIn = document.getElementById("marketingOptIn").checked ? "Yes" : "No";
-
-      if (!email) {
-        showLeadError("Please add an email address so we can send the numbers, or skip this form — your results are already on the page.");
-        return;
-      }
 
       const payload = {
-        name,
-        email,
-        business,
-        marketingOptIn,
-        ...(lastCalc || {}),
-        source: "AI Time & Money Calculator",
-        submittedAt: new Date().toISOString()
+        name, email, business, hourlyRate, hoursLeads, hoursFollowup, hoursContent, hoursAdmin,
+        totalHours, hoursSavedWeek, moneyWeek, moneyMonth, marketingOptIn,
+        source: "AI Time & Money Calculator", submittedAt: new Date().toISOString()
       };
 
-      leadBtn.disabled = true;
-      leadBtn.textContent = "Sending…";
-
+      const leadError = document.getElementById("leadError");
+      leadError.style.display = "none";
       try {
-        const response = await fetch(FORM_ENDPOINT, {
+        const res = await fetch(FORM_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify(payload)
         });
-
-        let detail = "";
-        try {
-          const body = await response.json();
-          if (body && (body.error || body.errors)) {
-            detail = " " + (body.error || JSON.stringify(body.errors));
-          }
-        } catch (parseErr) {
-          /* response was not JSON; still use HTTP status */
+        if (!res.ok) {
+          leadError.textContent = "We could not save your email just now. Your numbers are below — try the form again, or email efell@attenger.com.";
+          leadError.style.display = "block";
         }
-
-        if (!response.ok) {
-          throw new Error("Formspree returned HTTP " + response.status + "." + detail);
-        }
-
-        leadFields.style.display = "none";
-        leadSuccess.style.display = "block";
-        leadSuccess.textContent = "Sent. If you opted in, marketing emails will come from Attenger Ltd (Emma Fell at Attenger Digital). Unsubscribe in any email or write to efell@attenger.com.";
       } catch (err) {
-        const reason = (err && err.message) ? err.message : "Network or browser error.";
-        showLeadError("We could not send this. " + reason + " Please try again, or email efell@attenger.com. Your results above are unchanged.");
-      } finally {
-        leadBtn.disabled = false;
-        leadBtn.textContent = "Email my numbers / join the list →";
+        leadError.textContent = "We could not save your email just now. Your numbers are below — try the form again, or email efell@attenger.com.";
+        leadError.style.display = "block";
       }
+
+      calcBtn.disabled = false;
+      calcBtn.textContent = "Show me what I’m leaving on the table →";
     });
   </script>
 </body>
